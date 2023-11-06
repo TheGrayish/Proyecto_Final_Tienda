@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('apellidopa');
             $table->string('apellidoma');
             $table->string('password');
-            $table->string('Correo');
+            $table->string('email');
             $table->string('telefono');
 
-           #$table->timestamps();
+           $table->timestamps();
         });
     }
 
