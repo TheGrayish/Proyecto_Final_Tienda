@@ -89,9 +89,9 @@ http://www.tooplate.com/view/2102-constructive
 						<div class="ml-auto">
 							<header class="mb-4"><h1 class="tm-text-shadow">Ciudad Batalla</h1></header>
 							<p class="mb-5 tm-font-big">Ciudad Batalla es tu destino definitivo para adquirir lo último en tecnología y electrónica. Con una interfaz intuitiva y amigable, Ciudad Batalla brinda una experiencia de compra fácil y segura. Nuestro catálogo incluye productos de las marcas más reconocidas a precios competitivos, garantizando calidad y satisfacción para nuestros clientes. Explora nuestra selección de artículos tecnológicos de alta gama desde la comodidad de tu hogar y disfruta de la conveniencia de la compra en línea con envíos rápidos y un servicio al cliente excepcional en Ciudad Batalla.</p>
-                            @foreach ($clientes as $cliente)
+                            {{-- @foreach ($clientes as $cliente)
                            
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('cliente.show', $cliente->id) }}">{{ $cliente->email }}</a>
                                 <a href="{{ route('cliente.edit', $cliente->id) }}">Editar</a>
                                 <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
@@ -99,9 +99,9 @@ http://www.tooplate.com/view/2102-constructive
                                     @method('DELETE')
                                     <button type="submit" class="boton-borrar">Borrar</button>
                                 </form>
-                            </li>  --}}
+                            </li>  
 
-                            @endforeach
+                            @endforeach --}}
                             
                             <a href="#" class="btn tm-btn tm-font-big" data-nav-link="#tmNavLink2">Continue...</a> 
 							<!-- data-nav-link holds the ID of nav item, which means this link should behave the same as that nav item  -->
@@ -114,12 +114,13 @@ http://www.tooplate.com/view/2102-constructive
 							<header class="mb-4"><h2 class="tm-text-shadow">Our Products</h2></header>		            
 							<div class="tm-img-container">
 								<div class="tm-img-slider">
-									<a href="img/gallery-img-01.jpg" class="tm-slider-img"><img src="img/gallery-img-01-tn.jpg" alt="Image" class="img-fluid"></a>
+									
+									{{-- <a href="img/gallery-img-01.jpg" class="tm-slider-img"><img src="img/gallery-img-01-tn.jpg" alt="Image" class="img-fluid"></a>
 									<a href="img/gallery-img-02.jpg" class="tm-slider-img"><img src="img/gallery-img-02-tn.jpg" alt="Image" class="img-fluid"></a>
 									<a href="img/gallery-img-03.jpg" class="tm-slider-img"><img src="img/gallery-img-03-tn.jpg" alt="Image" class="img-fluid"></a>
 									<a href="img/gallery-img-04.jpg" class="tm-slider-img"><img src="img/gallery-img-04-tn.jpg" alt="Image" class="img-fluid"></a>
 									<a href="img/gallery-img-05.jpg" class="tm-slider-img"><img src="img/gallery-img-05-tn.jpg" alt="Image" class="img-fluid"></a>
-									<a href="img/gallery-img-06.jpg" class="tm-slider-img"><img src="img/gallery-img-06-tn.jpg" alt="Image" class="img-fluid"></a>
+									<a href="img/gallery-img-06.jpg" class="tm-slider-img"><img src="img/gallery-img-06-tn.jpg" alt="Image" class="img-fluid"></a>  --}}
 								</div>
 							</div>		            		          
 						</div>       		          	

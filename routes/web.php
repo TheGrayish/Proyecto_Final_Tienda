@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProductosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('cliente', ClienteController::class);
+Route::resource('Home', ClienteController::class);
+
+Route::resource('productos', ProductosController::class);
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
