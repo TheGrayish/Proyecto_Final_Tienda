@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Productos;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller
 {
@@ -15,7 +16,7 @@ class ProductosController extends Controller
     {
       
         $productos = Productos::all(); // Obtener todos los productos
-
+        
         return view('Productos_index', ['productos' => $productos]);
         
     }
@@ -49,13 +50,13 @@ class ProductosController extends Controller
         // Guardar la imagen en la carpeta "storage/app/public/images"
         $imagen->storeAs('public/images', $nombreImagen);
     
-        $producto = new Productos();
-        $producto->nombre = $request->nombre;
-        $producto->descripcion = $request->descripcion;
-        $producto->precio = $request->precio;
-        $producto->stock = $request->stock;
-        $producto->imagen = $nombreImagen; // Guardar el nombre de la imagen, no el objeto de imagen
-        $producto->save();
+        $productos = new Productos();
+        $productos->nombre = $request->nombre;
+        $productos->descripcion = $request->descripcion;
+        $productos->precio = $request->precio;
+        $productos->stock = $request->stock;
+        $productos->imagen = $nombreImagen; // Guardar el nombre de la imagen, no el objeto de imagen
+        $productos->save();
     
         // Redireccionar a la ruta adecuada
         return redirect()->route('productos.index');
@@ -72,27 +73,66 @@ class ProductosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Productos $productos)
+    public function edit(Productos $producto)
     {
-        //
+        return view('Productos_edit', compact('producto'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Productos $productos)
+    public function update(Request $request, Productos $producto)
     {
-        //
+        $request->validate([
+            'descripcion' => 'required',
+            'precio' => 'required|numeric',
+            'nombre' => 'required',
+            'stock' => 'required',
+            'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+    
+        $producto->nombre = $request->nombre;
+        $producto->descripcion = $request->descripcion;
+        $producto->precio = $request->precio;
+        $producto->stock = $request->stock;
+    
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
+            $imagen->storeAs('public/images', $nombreImagen);
+    
+            // Eliminar la imagen antigua si existe
+            if ($producto->imagen) {
+                Storage::delete('public/images/' . $producto->imagen);
+            }
+    
+            $producto->imagen = $nombreImagen;
+        }
+    
+        $producto->save();
+    
+        return redirect()->route('productos.index');
     }
+    
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Productos $productos)
-    {
-        //
-    }
+  
 
+     public function destroy(Productos $producto)
+     {
+         // Eliminar la imagen asociada al producto si existe
+         if ($producto->imagen) {
+             Storage::delete('public/images/' . $producto->imagen);
+         }
+     
+         $producto->delete();
+     
+         return redirect()->route('productos.index');
+     }
+     
  
 
 }

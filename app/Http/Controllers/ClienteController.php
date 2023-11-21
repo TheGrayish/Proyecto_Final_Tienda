@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Productos;
 use Illuminate\Http\Request;
+
 
 class ClienteController extends Controller
 {
@@ -13,8 +15,9 @@ class ClienteController extends Controller
     public function index()
     {   
         $cliente = Cliente::all();
+        $productos = Productos::all();
 
-        return view('Cliente_index', ['clientes'=> $cliente]);
+        return view('Cliente_index', ['clientes'=> $cliente], ['productos' => $productos]);
     }
 
     /**
@@ -75,7 +78,16 @@ class ClienteController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Cliente $cliente)
-    {
+    {       
+
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'nombre' => 'required',
+            'apellidopa' => 'required',
+            'apellidoma' => 'required',
+            'telefono' => 'required'
+        ]);
       
            $cliente->nombre = $request->nombre;
            $cliente->apellidopa = $request->apellidopa;

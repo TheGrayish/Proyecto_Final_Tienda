@@ -19,9 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('Home', ClienteController::class);
+Route::resource('home', ClienteController::class);
 
 Route::resource('productos', ProductosController::class);
+
 
 
 Route::middleware([
