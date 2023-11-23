@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('productos', function (Blueprint $table) {
             $table->id('id');
             $table->string('descripcion');
             $table->integer('precio');
             $table->string('nombre');
-            $table->string('stock');
+            $table->integer('stock');
             $table->string('imagen')->nullable();
-
-           #  $table->timestamps();
+            $table->bigInteger('Id_Proveedor')->unsigned();
+            
+            $table->foreign('Id_Proveedor')->references('id')->on('provedors');
+            
+          #  $table->primary('id');
         });
     }
 
@@ -31,3 +35,4 @@ return new class extends Migration
         Schema::dropIfExists('productos');
     }
 };
+
