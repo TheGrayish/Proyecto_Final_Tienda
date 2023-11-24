@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\ProvedorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,6 @@ Route::get('/', function () {
 Route::resource('home', ClienteController::class);
 
 Route::resource('productos', ProductosController::class);
-
-
 
 Route::middleware([
     'auth:sanctum',

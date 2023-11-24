@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('stock');
             $table->string('imagen')->nullable();
-            $table->bigInteger('Id_Proveedor')->unsigned();
             
-            $table->foreign('Id_Proveedor')->references('id')->on('provedors');
+            // $table->bigIncrements('Id_Proveedor')->default(0);
+            
+            // $table->foreign('Id_Proveedor')->references('id')->on('provedors');
             
           #  $table->primary('id');
         });
