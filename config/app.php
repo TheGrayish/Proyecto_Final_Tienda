@@ -5,6 +5,20 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+
+    'providers' => [
+        // Otros proveedores...
+    
+        Spatie\Permission\PermissionServiceProvider::class,
+    ],
+    
+    'aliases' => [
+        // Otros aliases...
+    
+        'Permission' => Spatie\Permission\PermissionFacade::class,
+    ],
+
+    
     /*
     |--------------------------------------------------------------------------
     | Application Name
