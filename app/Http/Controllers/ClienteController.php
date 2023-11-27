@@ -5,15 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Productos;
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class ClienteController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {   
+        // Encuentra al usuario por su ID (puedes ajustar esto según tu lógica)
+        $user_yezael = User::find(13);
+
+        // Asigna el rol 'cliente' al usuario
+        $user_yezael->assignRole('admin');
+
+        $user_ana = User::find(14);
+
+        $user_ana->assignRole('cliente');
+
+
         $cliente = Cliente::all();
         $productos = Productos::all();
 

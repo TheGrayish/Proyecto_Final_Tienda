@@ -22,6 +22,12 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use HasRoles;
 
+
+    public function hasAnyRole($roles)
+    {
+        return $this->roles->pluck('name')->intersect($roles)->count();
+    }
+    
     /**
      * The attributes that are mass assignable.
      *

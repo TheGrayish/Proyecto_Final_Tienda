@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ProvedorController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +23,12 @@ Route::get('/', function () {
 
 Route::resource('home', ClienteController::class);
 
-Route::resource('productos', ProductosController::class);
+Route::middleware(['role:admin'])->group(function () {
+    
+    Route::resource('productos', ProductosController::class);
+});
+
+
 
 Route::middleware([
     'auth:sanctum',
