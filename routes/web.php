@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ProvedorController;
+use App\Models\Orden;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,10 +26,13 @@ Route::get('/', function () {
 });
 
 Route::resource('home', ClienteController::class);
+Route::resource('facturas', FacturaController::class);
+Route::resource('orden', OrdenController::class);
 
 Route::middleware(['role:admin'])->group(function () {
     
     Route::resource('productos', ProductosController::class);
+    Route::resource('categoria', CategoriaController::class);
 });
 
 

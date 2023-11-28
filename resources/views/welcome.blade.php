@@ -3,6 +3,27 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* Estilo del cuadro */
+            .link-box {
+                position: fixed; /* Fijar la posición */
+                top: 20px; /* Distancia desde la parte superior (ajustado) */
+                left: 20px; /* Distancia desde la izquierda (ajustado) */
+                display: inline-block;
+                padding: 10px 20px;
+                border: 2px solid #ff0000; /* Rojo */
+                text-decoration: none;
+                color: #ff0000; /* Rojo */
+                font-weight: bold;
+                transition: background-color 0.3s, color 0.3s;
+            }
+    
+            /* Cambios en el color al pasar el ratón */
+            .link-box:hover {
+                background-color: #ff0000; /* Rojo */
+                color: #fff; /* Blanco */
+            }
+        </style>
 
         <title>Laravel</title>
 
@@ -38,6 +59,8 @@
                     </svg>
                 </div>
 
+                <a href="/home" class="link-box">Home Page</a>
+                
                 <div class="mt-16">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                         <a href="https://laravel.com/docs" class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">

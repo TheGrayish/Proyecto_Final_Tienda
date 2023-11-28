@@ -31,6 +31,20 @@ http://www.tooplate.com/view/2102-constructive
    		renderPage = false;
 	}
 	</script>
+	  <style>
+
+        /* Styles for the link in the top-right corner */
+        .tm-go-to-orders {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -60,7 +74,7 @@ http://www.tooplate.com/view/2102-constructive
 								</a>
 							</li>
 							<li>
-								<a href="#products" id="tmNavLink2" class="scrolly" data-bg-img="constructive_bg_02.jpg" data-page="#tm-section-2" data-page-type="carousel">
+								<a href="#products" id="tmNavLink2" class="scrolly" data-bg-img="Fondo 2.jpg" data-page="#tm-section-2" data-page-type="carousel">
 									<i class="fas fa-map tm-nav-fa-icon"></i>
 									<span>Our Products</span>
 								</a>
@@ -126,6 +140,14 @@ http://www.tooplate.com/view/2102-constructive
 											<p><strong>Precio:</strong> ${{ $producto->precio }}</p>
 											<p><strong>Stock:</strong> {{ $producto->stock }}</p>
 										</div>
+										<form action="{{ route('orden.store') }}" method="post">
+											@csrf
+											<input type="hidden" name="producto_id" value="{{ $producto->id }}">
+											<input type="hidden" name="FechaEstado" value="{{ now() }}">
+											<!--campos ocultos -->
+
+											<button type="submit" class="btn btn-primary">Agregar al Carrito</button>
+										</form>
 									</div>
 									@endforeach
 									
@@ -135,7 +157,9 @@ http://www.tooplate.com/view/2102-constructive
 									<a href="img/gallery-img-04.jpg" class="tm-slider-img"><img src="img/gallery-img-04-tn.jpg" alt="Image" class="img-fluid"></a>
 									<a href="img/gallery-img-05.jpg" class="tm-slider-img"><img src="img/gallery-img-05-tn.jpg" alt="Image" class="img-fluid"></a>
 									<a href="img/gallery-img-06.jpg" class="tm-slider-img"><img src="img/gallery-img-06-tn.jpg" alt="Image" class="img-fluid"></a>  
+									
 								</div>
+								<a href="{{ route('orden.index') }}" class="btn tm-go-to-orders btn-primary">Carrito</a>
 							</div>		            		          
 						</div>       		          	
 					</section>

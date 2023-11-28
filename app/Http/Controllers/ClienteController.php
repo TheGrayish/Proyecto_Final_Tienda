@@ -17,17 +17,19 @@ class ClienteController extends Controller
     public function index()
     {   
         // Encuentra al usuario por su ID (puedes ajustar esto según tu lógica)
-        $user_yezael = User::find(13);
+        $user_yezael = User::find(1);
 
         // Asigna el rol 'cliente' al usuario
         $user_yezael->assignRole('admin');
 
-        $user_ana = User::find(14);
+        $user_ana = User::find(2);
 
         $user_ana->assignRole('cliente');
 
+        
+        // Utiliza eager loading para cargar la relación 'user'
+        $cliente = Cliente::with('user')->get();
 
-        $cliente = Cliente::all();
         $productos = Productos::all();
 
         return view('Cliente_index', ['clientes'=> $cliente], ['productos' => $productos]);

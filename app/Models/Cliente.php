@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     use HasFactory;
 }

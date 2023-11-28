@@ -20,11 +20,10 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('imagen')->nullable();
             
-            // $table->bigIncrements('Id_Proveedor')->default(0);
-            
-            // $table->foreign('Id_Proveedor')->references('id')->on('provedors');
-            
-          #  $table->primary('id');
+            //  // Agregar columna para la relación con facturas
+            //  $table->foreignId('factura_id')->nullable();
+            //  $table->foreign('factura_id')->references('id')->on('facturas')->onDelete('cascade');
+
         });
     }
 

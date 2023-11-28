@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Orden extends Model
 {
+    public function producto()
+{
+    return $this->belongsTo('App\Models\Productos', 'producto_id');
+}
+    
+    protected $fillable = ['usuario_id', 'producto_id', 'FechaEstado',];
+    
     use HasFactory;
 }

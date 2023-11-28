@@ -22,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use HasRoles;
 
+    
 
     public function hasAnyRole($roles)
     {
