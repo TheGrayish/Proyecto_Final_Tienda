@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('FechaEstado');
             $table->integer('total')->default(0);
-
+            $table->softDeletes();
+            
             // Agregar columna para la relación con productos
             $table->foreignId('producto_id')->nullable();
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');

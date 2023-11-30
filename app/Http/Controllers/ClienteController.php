@@ -15,24 +15,32 @@ class ClienteController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+       
     {   
-        // Encuentra al usuario por su ID (puedes ajustar esto según tu lógica)
-        $user_yezael = User::find(1);
-
-        // Asigna el rol 'cliente' al usuario
-        $user_yezael->assignRole('admin');
-
-        $user_ana = User::find(2);
-
-        $user_ana->assignRole('cliente');
-
         
+        
+       $user_yezael = User::find(1);
+
+       // Asigna el rol 'cliente' al usuario
+       $user_yezael->assignRole('admin');
+
+       
         // Utiliza eager loading para cargar la relación 'user'
         $cliente = Cliente::with('user')->get();
 
         $productos = Productos::all();
 
         return view('Cliente_index', ['clientes'=> $cliente], ['productos' => $productos]);
+
+      
+
+       // Verificar si el rol 'cliente' ya existe
+       if (!Role::where('name', 'cliente')->exists()) {
+           $user_ana = User::find(2);
+
+           $user_ana->assignRole('cliente');
+       }
+       
     }
 
     /**

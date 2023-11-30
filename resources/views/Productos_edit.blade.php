@@ -92,7 +92,7 @@
             <img src="{{ asset('storage/images/' . $producto->imagen) }}" alt="Imagen actual">
         @endif
 
-        <input type="submit" value="Actualizar Producto">
+        <input type="submit" onclick="return confirm('Are you sure?')" value="Actualizar Producto">
     </form>
 </body>
 </html>

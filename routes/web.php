@@ -25,17 +25,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
 Route::resource('home', ClienteController::class);
-Route::resource('facturas', FacturaController::class);
 Route::resource('orden', OrdenController::class);
+Route::post('/orden/{orden}/restore', [OrdenController::class, 'restore'])->name('orden.restore');
+Route::delete('/orden/{orden}/forceDelete', [OrdenController::class, 'forceDelete'])->name('orden.forceDelete');
 
 Route::middleware(['role:admin'])->group(function () {
     
     Route::resource('productos', ProductosController::class);
-    Route::resource('categoria', CategoriaController::class);
+
 });
 
-
+});
 
 Route::middleware([
     'auth:sanctum',

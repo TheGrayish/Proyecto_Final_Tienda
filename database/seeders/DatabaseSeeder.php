@@ -16,12 +16,16 @@ class DatabaseSeeder extends Seeder
 
      public function run()
      {
-        $this->call([
-          UsuarioSeeder::class
-        ]);
+        // $this->call([
+        //   UsuarioSeeder::class
+        // ]);
         
-         // Crea 10 usuarios utilizando el factory
-         User::factory(10)->create();
-     }
-     
+        //  // Crea 10 usuarios utilizando el factory
+        //  User::factory(10)->create();
+        //  Funciona, pero es mejor no usarlo :P 
+      
+        \App\Models\Productos::factory(10)->create();
+      }
+      
+
 }

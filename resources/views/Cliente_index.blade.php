@@ -13,6 +13,7 @@ Template 2102 Constructive
 http://www.tooplate.com/view/2102-constructive
 
 -->
+
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
 	<link rel="stylesheet" href="css/fontawesome-all.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -20,7 +21,7 @@ http://www.tooplate.com/view/2102-constructive
 	<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
 	<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 	<link rel="stylesheet" href="css/tooplate-style.css">
-
+	
 	<script>
 		var renderPage = true;
 
@@ -44,6 +45,26 @@ http://www.tooplate.com/view/2102-constructive
             text-decoration: none;
             border-radius: 5px;
         }
+
+		.navbar {
+            background-color: rgba(0, 123, 255, 0.7); /* Azul con transparencia */
+        }
+
+        .navbar-light .navbar-brand,
+        .navbar-light .navbar-toggler-icon,
+        .navbar-light .navbar-nav .nav-link {
+            color: white; /* Texto en blanco */
+        }
+
+        .navbar-light .navbar-toggler {
+            border-color: white; /* Color del borde del botón de desplegar */
+        }
+
+        .navbar-light .navbar-toggler:hover,
+        .navbar-light .navbar-toggler:focus {
+            background-color: rgba(255, 255, 255, 0.5); /* Fondo del botón de desplegar al pasar el ratón o al hacer clic */
+        }
+
     </style>
 </head>
 
@@ -54,7 +75,36 @@ http://www.tooplate.com/view/2102-constructive
 		<div class="loader-section section-left"></div>
 		<div class="loader-section section-right"></div>
 	</div>
-	
+        
+	<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="/">Inicio</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+			@auth
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+            </li>
+            @endauth
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('orden.index') }}">Carrito</a>
+            </li>
+            @role('admin')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('productos.index') }}">Productos</a>
+            </li>
+            @endrole
+        </ul>
+    </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	</div>
 	<!-- Page Content -->
 	<div class="container-fluid tm-main">
 		<div class="row tm-main-row">
@@ -236,7 +286,7 @@ http://www.tooplate.com/view/2102-constructive
 								</div>
 								<div class="col-md-6 col-sm-12 tm-contact-col">
 									<div class="tm-address-box">
-										<p>Aliquam interdum, nisl sedd faucibus tempor, massa velit laoreet ipsum, et faucibus sapien magna at enim. Suspendisse a dictum tortor.</p>
+										<p>Aucibus sapien magna at enim. Suspendisse a dictum tortor.</p>
 										<p>Curabitur venenatis leo in augue convallis, vulputate sollicitudin ex maximus.</p>
 										<address>
 											120-240 Aliquam nec neque augue<br>

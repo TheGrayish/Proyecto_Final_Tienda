@@ -72,12 +72,32 @@
             border-radius: 4px;
             cursor: pointer;
         }
+         /* Estilo del cuadro */
+         .link-box {
+                position: fixed; /* Fijar la posición */
+                top: 20px; /* Distancia desde la parte superior (ajustado) */
+                left: 20px; /* Distancia desde la izquierda (ajustado) */
+                display: inline-block;
+                padding: 10px 20px;
+                border: 2px solid #ff0000; /* Rojo */
+                text-decoration: none;
+                color: #ff0000; /* Rojo */
+                font-weight: bold;
+                transition: background-color 0.3s, color 0.3s;
+            }
+    
+            /* Cambios en el color al pasar el ratón */
+            .link-box:hover {
+                background-color: #ff0000; /* Rojo */
+                color: #fff; /* Blanco */
+            }
+
     </style>
 </head>
 <body>
     <h1>Lista de Productos</h1>
     <a href="{{ route('productos.create') }}" class="btn">Crear registro</a>
-
+    <a href="/home" class="link-box">Home Page</a>
     @foreach ($productos as $producto)
         <div class="producto">
             <h2>{{ $producto->nombre }}</h2>
@@ -91,7 +111,7 @@
             <form action="{{ route('productos.destroy', $producto->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Borrar</button>
+                <button type="submit" onclick="return confirm('Are you sure?')">Borrar</button>
             </form>
         </div>
     @endforeach

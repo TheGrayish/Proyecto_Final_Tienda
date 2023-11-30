@@ -15,21 +15,30 @@ class OrdenController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    // Obtén el ID del usuario autenticado
-    $userID = Auth::id();
+    {
+        // Obtén el ID del usuario autenticado
+        $userID = Auth::id();
 
-     // Carga las relaciones necesarias (en este caso, la relación con productos)
-     $ordenes = Orden::with('producto')->get();
-    
-    $productos = Productos::all();
+        // Carga las relaciones necesarias (en este caso, la relación con productos)
+        $ordenes = Orden::with('producto')->get();
+        
+        // Obtén los elementos eliminados lógicamente
+        $ordenesTrashed = Orden::onlyTrashed()->with('producto')->get();
 
-    // Calculate the total price
-    $totalPrice = $ordenes->sum(function ($orden) {
-        return $orden->producto->precio;
-    });
+        $productos = Productos::all();
 
-    return view('Orden_index', ['userID' => $userID, 'productos' => $productos, 'ordenes' => $ordenes, 'totalPrice' => $totalPrice]);
+        // Calculate the total price
+        $totalPrice = $ordenes->sum(function ($orden) {
+            return $orden->producto->precio;
+        });
+
+        return view('Orden_index', [
+            'userID' => $userID,
+            'productos' => $productos,
+            'ordenes' => $ordenes,
+            'ordenesTrashed' => $ordenesTrashed,
+            'totalPrice' => $totalPrice,
+        ]);
     }
 
     /**
@@ -82,9 +91,24 @@ class OrdenController extends Controller
      */
     public function destroy(Orden $orden)
     {
-        // Delete the order
-        $orden->delete();
+        // Utiliza el método destroy para gestionar la eliminación suave
+        $orden->destroy($orden->id);
 
         return redirect()->route('orden.index')->with('success', 'Order deleted successfully!');
     }
+
+    public function restore(Orden $orden)
+    {
+        $orden->restore();
+        return redirect()->route('orden.index')->with('success', 'Order restored successfully!');
+    }
+
+    public function forceDelete(Orden $orden)
+    {   
+        $orden->forceDelete();
+        return redirect()->route('orden.index')->with('success', 'Order permanently deleted!');
+    }
+
+
+
 }

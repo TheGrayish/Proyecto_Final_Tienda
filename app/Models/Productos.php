@@ -12,5 +12,4 @@ class Productos extends Model
 
     use HasFactory;
 
-    
 }

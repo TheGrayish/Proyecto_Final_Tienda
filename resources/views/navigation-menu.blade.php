@@ -12,9 +12,18 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                   
+                    <x-nav-link href="{{ route('home.index') }}" :active="request()->routeIs('home.index')">
+                        {{ __('Home Page') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('productos.index') }}" :active="request()->routeIs('productos.index')">
+                        {{ __('Agregar Productos') }}
+                    </x-nav-link>
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
                 </div>
             </div>
 
